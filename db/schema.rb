@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_29_131816) do
+ActiveRecord::Schema.define(version: 2019_11_04_013343) do
+
+  create_table "games", force: :cascade do |t|
+    t.integer "uid"
+    t.integer "asin"
+    t.integer "status"
+    t.integer "platform"
+    t.integer "evaluation"
+    t.text "memo"
+    t.integer "play_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "provider"

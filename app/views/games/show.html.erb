@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Uid:</strong>
+  <%= @game.uid %>
+</p>
+
+<p>
+  <strong>Asin:</strong>
+  <%= @game.asin %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @game.status %>
+</p>
+
+<p>
+  <strong>Platform:</strong>
+  <%= @game.platform %>
+</p>
+
+<p>
+  <strong>Evaluation:</strong>
+  <%= @game.evaluation %>
+</p>
+
+<p>
+  <strong>Memo:</strong>
+  <%= @game.memo %>
+</p>
+
+<p>
+  <strong>Play time:</strong>
+  <%= @game.play_time %>
+</p>
+
+<%= link_to 'Edit', edit_game_path(@game) %> |
+<%= link_to 'Back', games_path %>
