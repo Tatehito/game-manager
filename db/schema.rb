@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_04_013343) do
+ActiveRecord::Schema.define(version: 2019_11_05_080823) do
 
   create_table "games", force: :cascade do |t|
-    t.integer "uid"
+    t.integer "user_id"
     t.integer "asin"
     t.integer "status"
     t.integer "platform"
@@ -33,4 +33,5 @@ ActiveRecord::Schema.define(version: 2019_11_04_013343) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "games", "users"
 end

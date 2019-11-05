@@ -1,11 +1,7 @@
 FactoryBot.define do
   factory :game do
-    uid { 1 }
+    association :user
     asin { 1 }
     status { 1 }
-    platform { 1 }
-    evaluation { 1 }
-    memo { "MyText" }
-    play_time { 1 }
   end
 end

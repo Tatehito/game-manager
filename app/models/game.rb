@@ -1,4 +1,5 @@
 class Game < ApplicationRecord
-  validates :uid, :asin, :status, presence: true
-  validates :uid, uniqueness: { scope: :asin }
+  validates :user_id, :asin, :status, presence: true
+  validates :user_id, uniqueness: { scope: :asin }
+  belongs_to :user
 end

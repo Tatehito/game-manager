@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Uid</th>
+      <th>user_id</th>
       <th>Asin</th>
       <th>Status</th>
       <th>Platform</th>
@@ -19,7 +19,7 @@
   <tbody>
     <% @games.each do |game| %>
       <tr>
-        <td><%= game.uid %></td>
+        <td><%= game.user_id %></td>
         <td><%= game.asin %></td>
         <td><%= game.status %></td>
         <td><%= game.platform %></td>
