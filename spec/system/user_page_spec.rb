@@ -11,9 +11,6 @@ RSpec.describe "user page spec", type: :system do
   it 'has correct links and contents' do
     expect(page).to have_link 'ログアウト'
     expect(page).to have_link 'ゲームメーター', href: root_path
-
-    # expect(page).to have_link 'テキストボックス'
-    # expect(page).to have_link '検索'
     
     # ユーザー名
     # Twitterアカウント
@@ -26,7 +23,7 @@ RSpec.describe "user page spec", type: :system do
     expect(page).to have_link '積みゲー', href: games_path
   end
 
-  # it '集計値の確認' do
+  # describe '集計値の確認' do
   # end
 
   # it ゲームソフト一覧画面を表示（ALL） do
@@ -39,13 +36,18 @@ RSpec.describe "user page spec", type: :system do
   # it ゲームソフト一覧画面を表示（ステータスごと） do
   # end
 
-  # it 'Amazon検索' do
-  #   fill_in 
-  #   click_on '検索'
-  #   expect(current_page).to eq ''
-  #   検索結果が表示されること
-  #   登録済みのゲームはボタンが非活性
-  #   未登録のゲームは活性
-  #   ページングの確認
-  # end
+  describe 'search by Amazon' do
+    it 'is more than 2 pages of search results' do
+      fill_in 'search_word', with: 'ドラゴンクエスト'
+      click_on '検索'
+      expect(current_path).to eq search_path
+      # 検索結果が表示されること
+      # 登録済みのゲームはボタンが非活性
+      # 未登録のゲームは活性
+      # ページングの確認
+    end
+    # 1ページに収まる件数がヒット
+    # 空欄で検索
+    # 検索結果ゼロ件
+  end
 end
