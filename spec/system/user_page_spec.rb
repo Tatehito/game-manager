@@ -10,25 +10,33 @@ RSpec.describe "user page spec", type: :system do
 
   it 'has correct links and contents' do
     expect(page).to have_link 'ログアウト'
-    # expect(page).to have_link 'ゲームメーター'
+    expect(page).to have_link 'ゲームメーター', href: root_path
 
     # expect(page).to have_link 'テキストボックス'
     # expect(page).to have_link '検索'
     
-    # プロフィールなど正しく表示されている
+    # ユーザー名
+    # Twitterアカウント
+    # Twitterプロフィール画像
 
+    expect(page).to have_link '全ソフト', href: games_path
+    expect(page).to have_link 'ほしい', href: games_path
+    expect(page).to have_link '今やってる', href: games_path
+    expect(page).to have_link 'クリア済', href: games_path
+    expect(page).to have_link '積みゲー', href: games_path
   end
 
   # it '集計値の確認' do
   # end
 
   # it ゲームソフト一覧画面を表示（ALL） do
+    # click_on '全ソフト'
+    # expect(current_path).to eq games_path
+    # そのユーザーの全ソフトが表示されていること
+    # ページングまたぎ
   # end
 
   # it ゲームソフト一覧画面を表示（ステータスごと） do
-  # end
-
-  # it 'ゲームソフト一覧画面を表示（プラットフォームごと）' do
   # end
 
   # it 'Amazon検索' do

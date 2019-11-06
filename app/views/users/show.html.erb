@@ -1,21 +1,9 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Provider:</strong>
-  <%= @user.provider %>
-</p>
-
-<p>
-  <strong>Uid:</strong>
-  <%= @user.uid %>
-</p>
-
 <p>
   <strong>User name:</strong>
   <%= @user.user_name %>
 </p>
 
-<p>
-  <strong>Image url:</strong>
-  <%= @user.image_url %>
-</p>
+<%= link_to '全ソフト', games_path %>
+<% @statuses.each do |status| %>
+  <%= link_to status.name, games_path, status: status.id %>
+<% end %>
