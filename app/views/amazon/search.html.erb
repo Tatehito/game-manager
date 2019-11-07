@@ -1,2 +1,19 @@
-<h1>Amazon#search</h1>
-<p>Find me in app/views/amazon/search.html.erb</p>
+<%= render 'layouts/search' %>
+<h1>検索結果</h1>
+<%= form_tag("/create", method: "post") do %>
+  <% @results.each do |result| %>
+    <div class="image">
+      <%= link_to (image_tag(result[:image], style: "width: 70px;height: 100px;display: inline-block;")), result[:url] %>
+    <div>
+    <div class="title">
+      <%= link_to result[:title], result[:url] %>
+    </div>
+    <div class="manufacturer">
+      <%= result[:manufacturer] %>
+    </div>
+    <div class="price">
+      <%= result[:price] %>
+    </div>
+    <%= submit_tag("登録") %>
+  <% end %>
+<% end %>

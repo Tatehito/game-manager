@@ -37,17 +37,17 @@ RSpec.describe "user page spec", type: :system do
   # end
 
   describe 'search by Amazon' do
-    it 'is more than 2 pages of search results' do
+    it 'display search results' do
       fill_in 'search_word', with: 'ドラゴンクエスト'
       click_on '検索'
       expect(current_path).to eq search_path
-      # 検索結果が表示されること
-      # 登録済みのゲームはボタンが非活性
-      # 未登録のゲームは活性
-      # ページングの確認
+      expect(all('.title').size).to eq(10)
+      expect(page).to have_button '登録'
     end
-    # 1ページに収まる件数がヒット
-    # 空欄で検索
-    # 検索結果ゼロ件
+
+    it '空欄で検索した場合'
+    it '検索結果ゼロ件の場合'
+    it '登録済みのゲームはボタンが非活性'
+    it '未登録のゲームは活性'
   end
 end
