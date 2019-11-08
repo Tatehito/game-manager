@@ -22,10 +22,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = User.find(current_user.id).games.new(
-      asin: params[:asin],
-      status: params[:status]
-    )
+    @game = User.find(current_user.id).games.new(game_params)
     if @game.save!
       redirect_to games_url, notice: 'Game was successfully registered.'
     end

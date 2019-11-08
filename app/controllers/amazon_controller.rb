@@ -12,14 +12,14 @@ class AmazonController < ApplicationController
   
     @games = []
     res.items.map do |item|
-      game = {
+      game = Game.new(
           asin: item.get('ASIN'),
           url: item.get('DetailPageURL'),
           title: item.get('ItemAttributes/Title'),
           manufacturer: item.get('ItemAttributes/Manufacturer'),
           price: item.get('ItemAttributes/ListPrice/FormattedPrice'),
           image: item.get('LargeImage/URL')
-      }
+      )
       @games << game
     end
   end

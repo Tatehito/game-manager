@@ -1,12 +1,12 @@
 <p id="notice"><%= notice %></p>
+<%= render 'layouts/search' %>
 
 <h1>Games</h1>
 
 <table>
   <thead>
     <tr>
-      <th>user_id</th>
-      <th>Asin</th>
+      <th></th>
       <th>Title</th>
       <th>Status</th>
       <th>Platform</th>
@@ -20,8 +20,7 @@
   <tbody>
     <% @games.each do |game| %>
       <tr>
-        <td><%= game.user_id %></td>
-        <td><%= game.asin %></td>
+        <td><%= image_tag(game.image, style: "width: 70px;height: 100px;display: inline-block;") %></td>
         <td><%= game.title %></td>
         <td><%= game.status %></td>
         <td><%= game.platform %></td>

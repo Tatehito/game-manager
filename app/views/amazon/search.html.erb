@@ -2,20 +2,25 @@
 
 <h1>検索結果</h1>
 <% @games.each do |game| %>
+  <%= form_with model: game do |form| %>
     <div class="image">
-      <%= link_to (image_tag(game[:image], style: "width: 70px;height: 100px;display: inline-block;")), game[:url] %>
+      <%= link_to (image_tag(game.image, style: "width: 70px;height: 100px;display: inline-block;")), game.url %>
+      <%= form.hidden_field(:image, value: game.image) %>
     <div>
     <div class="title">
-      <%= link_to game[:title], game[:url] %>
+      <%= link_to game.title, game.url %>
+      <%= form.hidden_field(:title, value: game.title) %>
     </div>
     <div class="manufacturer">
-      <%= game[:manufacturer] %>
+      <%= game.manufacturer %>
+      <%= form.hidden_field(:manufacturer, value: game.manufacturer) %>
     </div>
     <div class="price">
-      <%= game[:price] %>
+      <%= game.price %>
+      <%= form.hidden_field(:price, value: game.price) %>
     </div>
-  <%= form_with url: games_path do |form| %>
-    <%= form.hidden_field(:asin, value: game[:asin]) %>
+    <%= form.hidden_field(:asin, value: game.asin) %>
+    <%= form.hidden_field(:url, value: game.url) %>
     <%= form.hidden_field(:status, value: '1') %>
     <%= form.submit "登録" %>
   <% end %>
