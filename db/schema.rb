@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_115643) do
+ActiveRecord::Schema.define(version: 2019_11_08_134827) do
 
   create_table "games", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "asin"
+    t.string "asin"
     t.integer "status"
     t.integer "platform"
     t.integer "evaluation"
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 2019_11_06_115643) do
     t.integer "play_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "url"
+    t.string "title"
+    t.string "manufacturer"
+    t.string "price"
+    t.string "image"
   end
 
   create_table "statuses", force: :cascade do |t|

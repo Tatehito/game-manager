@@ -10,17 +10,17 @@ class AmazonController < ApplicationController
       search_index: 'VideoGames'
     )
   
-    @results = []
+    @games = []
     res.items.map do |item|
-      result = {
-        title: item.get('ItemAttributes/Title'),
-        manufacturer: item.get('ItemAttributes/Manufacturer'),
-        price: item.get('ItemAttributes/ListPrice/FormattedPrice'),
-        image: item.get('LargeImage/URL'),
-        url: item.get('DetailPageURL'),
-        asin: item.get('ASIN')
+      game = {
+          asin: item.get('ASIN'),
+          url: item.get('DetailPageURL'),
+          title: item.get('ItemAttributes/Title'),
+          manufacturer: item.get('ItemAttributes/Manufacturer'),
+          price: item.get('ItemAttributes/ListPrice/FormattedPrice'),
+          image: item.get('LargeImage/URL')
       }
-      @results << result
+      @games << game
     end
   end
 end

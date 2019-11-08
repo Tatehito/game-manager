@@ -15,12 +15,6 @@ RSpec.describe "user page spec", type: :system do
     # ユーザー名
     # Twitterアカウント
     # Twitterプロフィール画像
-
-    expect(page).to have_link '全ソフト', href: games_path
-    expect(page).to have_link 'ほしい', href: games_path
-    expect(page).to have_link '今やってる', href: games_path
-    expect(page).to have_link 'クリア済', href: games_path
-    expect(page).to have_link '積みゲー', href: games_path
   end
 
   # describe '集計値の確認' do

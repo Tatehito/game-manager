@@ -1,19 +1,22 @@
 <%= render 'layouts/search' %>
+
 <h1>検索結果</h1>
-<%= form_tag("/create", method: "post") do %>
-  <% @results.each do |result| %>
+<% @games.each do |game| %>
     <div class="image">
-      <%= link_to (image_tag(result[:image], style: "width: 70px;height: 100px;display: inline-block;")), result[:url] %>
+      <%= link_to (image_tag(game[:image], style: "width: 70px;height: 100px;display: inline-block;")), game[:url] %>
     <div>
     <div class="title">
-      <%= link_to result[:title], result[:url] %>
+      <%= link_to game[:title], game[:url] %>
     </div>
     <div class="manufacturer">
-      <%= result[:manufacturer] %>
+      <%= game[:manufacturer] %>
     </div>
     <div class="price">
-      <%= result[:price] %>
+      <%= game[:price] %>
     </div>
-    <%= submit_tag("登録") %>
+  <%= form_with url: games_path do |form| %>
+    <%= form.hidden_field(:asin, value: game[:asin]) %>
+    <%= form.hidden_field(:status, value: '1') %>
+    <%= form.submit "登録" %>
   <% end %>
 <% end %>

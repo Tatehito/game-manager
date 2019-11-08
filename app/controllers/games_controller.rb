@@ -21,19 +21,13 @@ class GamesController < ApplicationController
   def edit
   end
 
-  # POST /games
-  # POST /games.json
   def create
-    @game = Game.new(game_params)
-
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
+    @game = User.find(current_user.id).games.new(
+      asin: params[:asin],
+      status: params[:status]
+    )
+    if @game.save!
+      redirect_to games_url, notice: 'Game was successfully registered.'
     end
   end
 
@@ -69,6 +63,7 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:user_id, :asin, :status, :platform, :evaluation, :memo, :play_time)
+      p params
+      params.require(:game).permit(:user_id, :asin, :url, :title, :manufacturer, :price, :image, :status, :platform, :evaluation, :memo, :play_time)
     end
 end
