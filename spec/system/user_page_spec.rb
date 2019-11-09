@@ -20,15 +20,51 @@ RSpec.describe "user page spec", type: :system do
   # describe '集計値の確認' do
   # end
 
-  # it ゲームソフト一覧画面を表示（ALL） do
-    # click_on '全ソフト'
-    # expect(current_path).to eq games_path
-    # そのユーザーの全ソフトが表示されていること
-    # ページングまたぎ
-  # end
+  describe 'display a list of registered games' do
+    context '2 pages' do
+      before do
+        dummy_image = 'https://dummy/images.jpg'
 
-  # it ゲームソフト一覧画面を表示（ステータスごと） do
-  # end
+        user = User.find_by(uid: OmniAuth.config.mock_auth[:twitter][:uid])
+        user.games.create(
+          asin: 'A000000001', status: '1', title: 'ほしいゲーム', image: dummy_image)
+        user.games.create(
+          asin: 'A000000002', status: '2', title: '今やってるゲーム', image: dummy_image)
+        user.games.create(
+          asin: 'A000000003', status: '3', title: 'クリア済のゲーム', image: dummy_image)
+        user.games.create(
+          asin: 'A000000004', status: '4', title: '積みゲー', image: dummy_image)
+
+        another_user = FactoryBot.build(:user, uid: 'another')
+        another_user.save
+        another_user.games.create(asin: 'A000000001', status: '1', title: 'ほしいゲーム', image: dummy_image)
+      end
+
+      it 'displays all game' do
+        click_on '全ソフト'
+        expect(current_path).to eq games_path
+        expect(all('.title').size).to eq(4)
+        # ページングのリンク
+        # ページングのリンクをクリック
+        # expect(all('.title').size).to eq(1)
+      end
+    end
+    
+    # context '1 page' do
+      # it 'displays game with status ほしい' do
+        # click_on 'ほしい'
+      # end
+  
+      # it 'displays game with status 今やってる' do
+      # end
+  
+      # it 'displays game with status 積みゲー' do
+      # end
+      
+      # it 'displays game with status クリア済' do
+      # end
+    # end
+  end
 
   describe 'search by Amazon' do
     it 'display search results' do
