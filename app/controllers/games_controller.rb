@@ -20,7 +20,7 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = User.find(current_user.id).games.new(game_params)
+    @game = current_user.games.new(game_params)
     if @game.save!
       redirect_to games_url, notice: 'Game was successfully registered.'
     end
@@ -58,7 +58,6 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      p params
       params.require(:game).permit(:user_id, :asin, :url, :title, :manufacturer, :price, :image, :status, :platform, :evaluation, :memo, :play_time)
     end
 end
