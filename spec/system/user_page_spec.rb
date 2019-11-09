@@ -21,7 +21,10 @@ RSpec.describe "user page spec", type: :system do
   # end
 
   describe 'display a list of registered games' do
-    context '2 pages' do
+    # context '2 pages' do
+    # end
+    
+    context '1 page' do
       before do
         dummy_image = 'https://dummy/images.jpg'
 
@@ -44,26 +47,36 @@ RSpec.describe "user page spec", type: :system do
         click_on '全ソフト'
         expect(current_path).to eq games_path
         expect(all('.title').size).to eq(4)
-        # ページングのリンク
-        # ページングのリンクをクリック
-        # expect(all('.title').size).to eq(1)
+      end
+
+      it 'displays game with status ほしい' do
+        click_on 'ほしい'
+        expect(current_path).to eq games_path
+        expect(all('.title').size).to eq(1)
+        expect(page).to have_content 'ほしいゲーム'
+      end
+
+      it 'displays game with status 今やってる' do
+        click_on '今やってる'
+        expect(current_path).to eq games_path
+        expect(all('.title').size).to eq(1)
+        expect(page).to have_content '今やってるゲーム'
+      end
+
+      it 'displays game with status クリア済' do
+        click_on 'クリア済'
+        expect(current_path).to eq games_path
+        expect(all('.title').size).to eq(1)
+        expect(page).to have_content 'クリア済のゲーム'
+      end
+      
+      it 'displays game with status 積みゲー' do
+        click_on '積みゲー'
+        expect(current_path).to eq games_path
+        expect(all('.title').size).to eq(1)
+        expect(page).to have_content '積みゲー'
       end
     end
-    
-    # context '1 page' do
-      # it 'displays game with status ほしい' do
-        # click_on 'ほしい'
-      # end
-  
-      # it 'displays game with status 今やってる' do
-      # end
-  
-      # it 'displays game with status 積みゲー' do
-      # end
-      
-      # it 'displays game with status クリア済' do
-      # end
-    # end
   end
 
   describe 'search by Amazon' do

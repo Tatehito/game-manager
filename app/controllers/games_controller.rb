@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   def index
-    @games = current_user.games
+    @games = params[:status].nil? ? current_user.games : current_user.games.where(status: params[:status])
   end
 
   # GET /games/1
