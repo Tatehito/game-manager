@@ -5,6 +5,6 @@
 
 <% @games.each do |game| %>
   <div><%= image_tag(game.image, style: "width: 70px;height: 100px;display: inline-block;") %></div>
-  <div class="title"><%= game.title %></div>
+  <div class="title"><%= link_to game.title, edit_game_path(game) %></div>
   <div><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></div>
 <% end %>
