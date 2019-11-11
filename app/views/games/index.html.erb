@@ -2,9 +2,11 @@
 <%= render 'layouts/search' %>
 <%= render 'games/link' %>
 
-<h1>Games</h1>
-
-<% @games.each do |game| %>
-  <div><%= image_tag(game.image, style: "width: 70px;height: 100px;display: inline-block;") %></div>
-  <div class="title"><%= link_to game.title, edit_game_path(game) %></div>
+<% if @games.size == 0 %>
+  <div>ゲームソフトが登録されていません。</div>
+<% else %>
+  <% @games.each do |game| %>
+    <div><%= image_tag(game.image, style: "width: 70px;height: 100px;display: inline-block;") %></div>
+    <div class="title"><%= link_to game.title, edit_game_path(game) %></div>
+  <% end %>
 <% end %>
