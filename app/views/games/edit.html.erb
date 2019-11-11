@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
+<%= render 'games/link' %>
 <%= form_with(model: @game) do |form| %>
   <% if @game.errors.any? %>
     <div id="error_explanation">
