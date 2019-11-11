@@ -5,17 +5,13 @@ class GamesController < ApplicationController
     @games = params[:status].nil? ? current_user.games : current_user.games.where(status: params[:status])
   end
 
-  # GET /games/1
-  # GET /games/1.json
   def show
   end
 
-  # GET /games/new
   def new
     @game = Game.new
   end
 
-  # GET /games/1/edit
   def edit
   end
 
@@ -34,14 +30,9 @@ class GamesController < ApplicationController
     end
   end
 
-  # DELETE /games/1
-  # DELETE /games/1.json
   def destroy
     @game.destroy
-    respond_to do |format|
-      format.html { redirect_to games_url, notice: 'Game was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to games_url, notice: 'Game was successfully destroyed.'
   end
 
   private
