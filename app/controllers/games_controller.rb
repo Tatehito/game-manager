@@ -3,6 +3,7 @@ class GamesController < ApplicationController
 
   def index
     @games = params[:status].nil? ? current_user.games : current_user.games.where(status: params[:status])
+    @user = current_user
   end
 
   def show

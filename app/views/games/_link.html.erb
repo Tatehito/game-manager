@@ -1,0 +1,6 @@
+<%= link_to '全ソフト', games_path %>
+<%= @user.games.size %>
+<% Status.all.each do |status| %>
+  <%= link_to status.name, games_path(status: status.id) %>
+  <%= @user.games.where(status: status.id).size %>
+<% end %>
