@@ -9,8 +9,23 @@
 <% if @games.size == 0 %>
   <div>ゲームソフトが登録されていません。</div>
 <% else %>
-  <% @games.each do |game| %>
-    <div><%= image_tag(game.image, style: "width: 70px;height: 100px;display: inline-block;") %></div>
-    <div class="title"><%= link_to game.title, edit_game_path(game) %></div>
-  <% end %>
+  <div class="ui unstackable divided items">
+    <% @games.each do |game| %>
+      <div class="item">
+        <div class="ui small image">
+          <%= image_tag(game.image) %>
+        </div>
+        <div class="content">
+          <div class="header"><%= link_to game.title, edit_game_path(game) %></div>
+          <div class="meta">
+            <span class="price">$1200</span>
+            <span class="stay">1 Month</span>
+          </div>
+          <div class="description">
+            <p></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 <% end %>

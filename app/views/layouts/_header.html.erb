@@ -1,8 +1,10 @@
-<header>
-  <%= link_to 'ゲームメーター', root_path %>
-  <% if logged_in? %>
-    <%= link_to 'ログアウト', '/signout' %>
-  <% else %>
-    <%= link_to 'ログイン', '/auth/twitter' %>
-  <% end %>
-</header>
+<div class="ui attached secondary menu">
+  <%= link_to 'ゲームメーター', root_path, class: "large header item" %>
+  <div class="right menu">
+    <% if logged_in? %>
+      <%= link_to 'Logout', '/signout', class: "ui item" %>
+    <% else %>
+      <%= link_to 'Log-in', '/auth/twitter', class: "ui item" %>
+    <% end %>
+  </div>
+</div>
