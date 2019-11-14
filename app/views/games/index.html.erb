@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 <%= render 'layouts/search' %>
+
+<div><%= image_tag(@user.image_url) %></div>
+<div><%= @user.user_name %></div>
+
 <%= render 'games/link' %>
 
 <% if @games.size == 0 %>
