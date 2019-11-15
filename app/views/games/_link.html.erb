@@ -1,6 +1,12 @@
-<%= link_to '全ソフト', games_path %>
-<%= @user.games.size %>
-<% Status.all.each do |status| %>
-  <%= link_to status.name, games_path(status: status.id) %>
-  <%= @user.games.where(status: status.id).size %>
-<% end %>
+<div class="ui fluid vertical menu">
+  <div class="active teal item">
+    <%= link_to '全ソフト', games_path %>
+    <div class="ui teal left pointing label"><%= @user.games.size %></div>
+  </div>
+  <% Status.all.each do |status| %>
+    <div class="item">
+      <%= link_to status.name, games_path(status: status.id) %>
+      <div class="ui label"><%= @user.games.where(status: status.id).size %></div>
+    </div>
+  <% end %>
+</div>
