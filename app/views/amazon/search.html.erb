@@ -1,25 +1,27 @@
-<h1>検索結果</h1>
-<% @games.each do |game| %>
-  <%= form_with model: game do |form| %>
-    <div class="image">
-      <%= link_to (image_tag(game.image, style: "width: 70px;height: 100px;display: inline-block;")), game.url %>
-      <%= form.hidden_field(:image, value: game.image) %>
-    <div>
-    <div class="title">
-      <%= link_to game.title, game.url %>
-      <%= form.hidden_field(:title, value: game.title) %>
+<div class="ui unstackable divided items">
+  <% @games.each do |game| %>
+    <div class="item">
+      <div class="ui tiny image">
+        <%= link_to (image_tag(game.image)), game.url %>
+      </div>
+      <div class="content">
+        <%= link_to game.title, game.url %>
+        <div class="meta">
+          <span class="manufacturer"><%= game.manufacturer %></span>
+        </div>
+        <div class="extra">
+          <%= form_with model: game do |form| %>
+            <%= form.hidden_field(:image, value: game.image) %>
+            <%= form.hidden_field(:title, value: game.title) %>
+            <%= form.hidden_field(:manufacturer, value: game.manufacturer) %>
+            <%= form.hidden_field(:price, value: game.price) %>
+            <%= form.hidden_field(:asin, value: game.asin) %>
+            <%= form.hidden_field(:url, value: game.url) %>
+            <%= form.hidden_field(:status, value: '1') %>
+            <%= form.submit "登録" %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div class="manufacturer">
-      <%= game.manufacturer %>
-      <%= form.hidden_field(:manufacturer, value: game.manufacturer) %>
-    </div>
-    <div class="price">
-      <%= game.price %>
-      <%= form.hidden_field(:price, value: game.price) %>
-    </div>
-    <%= form.hidden_field(:asin, value: game.asin) %>
-    <%= form.hidden_field(:url, value: game.url) %>
-    <%= form.hidden_field(:status, value: '1') %>
-    <%= form.submit "登録" %>
   <% end %>
-<% end %>
+</div>
