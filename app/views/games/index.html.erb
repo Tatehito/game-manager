@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-<%= render 'layouts/search' %>
 
-<div><%= image_tag(@user.image_url) %></div>
-<div><%= @user.user_name %></div>
+<%= image_tag(@user.image_url, class: "ui tiny avatar image") %>
+<span class="ui header"><%= @user.user_name %></span>
 
 <%= render 'games/link' %>
 
