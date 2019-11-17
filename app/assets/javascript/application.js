@@ -3,4 +3,5 @@
 
 $(function(){
   $('.ui.dropdown').dropdown();
+  $('.ui.rating').rating();
 })

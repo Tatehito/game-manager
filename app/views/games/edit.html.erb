@@ -1,41 +1,39 @@
 <p id="notice"><%= notice %></p>
-<%= form_with(model: @game) do |form| %>
-  <div><%= image_tag(@game.image, style: "width: 70px;height: 100px;display: inline-block;") %></div>
-
-  <div class="field"><%= @game.title %></div>
-
-  <div class="field"><%= @game.manufacturer %></div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, {ほしい: 1, 今やってる: 2, クリア済: 3, 積みゲー: 4} %>
+<%= form_with(model: @game, class: "ui form") do |form| %>
+  <div>
+    <%= image_tag(@game.image, style: "width: 70px;height: 100px;display: inline-block;") %>
   </div>
-
   <div class="field">
-    <%= form.label :platform %>
+    <%= @game.title %>
+  </div>
+  <div class="field">
+    <%= @game.manufacturer %>
+  </div>
+  <div class="field">
+    <label>プレイ状況</label>
+    <%= form.select :status,
+      {ほしい: 1, 今やってる: 2, クリア済: 3, 積みゲー: 4},
+      {},
+      {class: "ui search dropdown"} %>
+  </div>
+  <div class="field">
+    <label>プラットフォーム</label>
     <%= form.number_field :platform %>
   </div>
-
   <div class="field">
-    <%= form.label :evaluation %>
-    <%= form.number_field :evaluation %>
+    <label>評価</label>
+    <div class="ui star rating" data-rating="<%= @game.evaluation %>" data-max-rating="5"></div>
+    <%= form.hidden_field :evaluation, value: 1 %>
   </div>
-
   <div class="field">
-    <%= form.label :memo %>
+    <label>感想・メモ</label>
     <%= form.text_area :memo %>
   </div>
-
   <div class="field">
-    <%= form.label :play_time %>
+    <label>プレイ時間</label>
     <%= form.number_field :play_time %>
   </div>
-
-  <div class="actions">
-    <%= form.submit '更新' %>
-  </div>
+  <%= form.submit '更新', class: "ui button" %>
 <% end %>
 
-<div>
-  <%= link_to '削除', @game, method: :delete, data: { confirm: 'Are you sure?' } %>
-</div>
+<%= link_to '削除', @game, class: "ui button", method: :delete, data: { confirm: 'Are you sure?' } %>
