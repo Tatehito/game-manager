@@ -1,22 +1,22 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="ui positive message">
+    <p><%= notice %></p>
+  </div>
+<% end %>
 
-<%= image_tag(@user.image_url, class: "ui tiny avatar image") %>
-<span class="ui header"><%= @user.user_name %></span>
+<%= image_tag(@user.image_url, class: "ui tiny image") %>
+<span class="ui header"><%= @user.user_name %>さんのゲーム棚</span>
 
 <%= render 'games/link' %>
 
 <% if @games.size == 0 %>
   <div>ゲームソフトが登録されていません。</div>
 <% else %>
-  <div class="ui six doubling cards">
+  <div class="ui three column grid">
     <% @games.each do |game| %>
-      <div class="card">
-          <%= link_to image_tag(game.image, style: "height:150px"), edit_game_path(game), style: "text-align:center" %>
-        <div class="content">
-          <%= link_to game.title, edit_game_path(game), class: "header", style: "vertical-align: inherit;" %>
-          <div class="meta">
-            <a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">最後に見たのは2日前</font></font></a>
-          </div>
+      <div class="column">
+        <div class="ui segment" style="padding:0">
+          <%= link_to image_tag(game.image, style: "width:100%"), edit_game_path(game) %>
         </div>
       </div>
     <% end %>

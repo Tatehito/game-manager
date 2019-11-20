@@ -1,13 +1,17 @@
-<p id="notice"><%= notice %></p>
+<%= render 'games/link' %>
+
+<% if notice %>
+  <div class="ui positive message">
+    <p><%= notice %></p>
+  </div>
+<% end %>
+
 <%= form_with(model: @game, class: "ui form") do |form| %>
-  <div>
-    <%= image_tag(@game.image, style: "width: 70px;height: 100px;display: inline-block;") %>
-  </div>
-  <div class="field">
-    <%= @game.title %>
-  </div>
-  <div class="field">
-    <%= @game.manufacturer %>
+  <div class="ui segment">
+    <%= image_tag(@game.image, class: "ui centered small image") %>
+    <div class="ui centered header">
+      <%= @game.title %>
+    </div>
   </div>
   <div class="field">
     <label>プレイ状況</label>
@@ -17,8 +21,8 @@
       {class: "ui search dropdown"} %>
   </div>
   <div class="field">
-    <label>プラットフォーム</label>
-    <%= form.number_field :platform %>
+    <label>プレイ時間</label>
+    <%= form.number_field :play_time %>
   </div>
   <div class="field">
     <label>評価</label>
@@ -30,10 +34,14 @@
     <%= form.text_area :memo %>
   </div>
   <div class="field">
-    <label>プレイ時間</label>
-    <%= form.number_field :play_time %>
+    <label>プラットフォーム</label>
+    <%= form.number_field :platform %>
   </div>
-  <%= form.submit '更新', class: "ui button" %>
+  <%= form.submit '更新', class: "ui teal button", style: "display:block; width:80%; margin: 0 auto;" %>
 <% end %>
 
-<%= link_to '削除', @game, class: "ui button", method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to '削除', @game, class: "ui button", style: "display:block; width:80%; margin: 10px auto;", method: :delete, data: { confirm: 'このゲームを削除しますか？' } %>
+
+<script>
+  $('.ui.rating').rating();
+</script>

@@ -20,13 +20,13 @@ class GamesController < ApplicationController
   def create
     @game = current_user.games.new(game_params)
     if @game.save!
-      redirect_to games_url, notice: 'Game was successfully registered.'
+      redirect_to "/games/#{@game.id}/edit", notice: "「#{@game.title}」を登録しました。"
     end
   end
 
   def update
     if @game.update(game_params)
-      redirect_to edit_game_url, notice: 'Game was successfully updated.'
+      redirect_to edit_game_url, notice: '更新しました。'
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class GamesController < ApplicationController
 
   def destroy
     @game.destroy
-    redirect_to games_url, notice: 'Game was successfully destroyed.'
+    redirect_to games_url, notice: "「#{@game.title}」を削除しました。"
   end
 
   private

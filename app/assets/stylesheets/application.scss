@@ -25,3 +25,12 @@
   width: 95%;
   margin: 0 auto;
 }
+
+.scrolling {
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+}
+
+.scrolling::-webkit-scrollbar{
+  display: none;
+}
