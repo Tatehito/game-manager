@@ -4,8 +4,35 @@
   </div>
 <% end %>
 
-<%= image_tag(@user.image_url, class: "ui tiny image") %>
-<span class="ui header"><%= @user.user_name %>さんのゲーム棚</span>
+<div class="ui unstackable items">
+  <div class="item">
+    <div class="image">
+      <%= image_tag(@user.image_url, class: "ui tiny image") %>
+    </div>
+    <div class="content">
+      <span class="header"><%= @user.user_name %>さんのゲーム棚</span>
+      <div class="meta">
+        <span>@xxxxxxx</span>
+      </div>
+      <div class="description" style="margin-top: 20px">
+        <div class="ui relaxed divided list">
+          <div class="item">
+            <i class="gamepad icon" style="padding-right:12px"></i>
+            <div class="content">
+              <span>15本</span>
+            </div>
+          </div>
+          <div class="item">
+            <i class="yen sign icon" style="padding: 0 15px 0 4px"></i>
+            <div class="content">
+              <span>25,987</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <%= render 'games/link' %>
 
