@@ -27,21 +27,21 @@
   <div class="field">
     <label>評価</label>
     <div class="ui star rating" data-rating="<%= @game.evaluation %>" data-max-rating="5"></div>
-    <%= form.hidden_field :evaluation, value: 1 %>
+    <%= form.hidden_field :evaluation %>
   </div>
   <div class="field">
     <label>感想・メモ</label>
     <%= form.text_area :memo %>
   </div>
-  <div class="field">
-    <label>プラットフォーム</label>
-    <%= form.number_field :platform %>
-  </div>
-  <%= form.submit '更新', class: "ui teal button", style: "display:block; width:80%; margin: 0 auto;" %>
+  <%= form.submit '更新', class: "ui teal button", style: "display:block; width:80%; margin: 0 auto;", onClick: "set_evaluation()" %>
 <% end %>
 
 <%= link_to '削除', @game, class: "ui button", style: "display:block; width:80%; margin: 10px auto;", method: :delete, data: { confirm: 'このゲームを削除しますか？' } %>
 
 <script>
   $('.ui.rating').rating();
+
+  function set_evaluation() {
+    $('#game_evaluation').val($("i.icon.active").length);
+  }
 </script>
