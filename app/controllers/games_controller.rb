@@ -2,7 +2,13 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   def index
-    @games = params[:status].nil? ? current_user.games : current_user.games.where(status: params[:status])
+    if params[:status].nil?
+      @games = current_user.games
+      @shelf_label = "ゲーム棚"
+    else
+      @games = current_user.games.where(status: params[:status])
+      @shelf_label = Status.find(params[:status]).name + "ゲーム"
+    end
     @total_price = @games.map { |game| game.price }.sum.to_s(:delimited, delimiter: ',')
     @user = current_user
   end

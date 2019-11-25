@@ -36,7 +36,7 @@ RSpec.describe "user page spec", type: :system do
         user.games.create(
           asin: 'A000000003', status: '3', title: 'クリア済のゲーム', image: dummy_image)
         user.games.create(
-          asin: 'A000000004', status: '4', title: '積みゲー', image: dummy_image)
+          asin: 'A000000004', status: '4', title: '積み', image: dummy_image)
 
         another_user = FactoryBot.build(:user, uid: 'another')
         another_user.save
@@ -70,11 +70,11 @@ RSpec.describe "user page spec", type: :system do
         expect(page).to have_content 'クリア済のゲーム'
       end
       
-      it 'displays game with status 積みゲー' do
-        click_on '積みゲー'
+      it 'displays game with status 積み' do
+        click_on '積み'
         expect(current_path).to eq games_path
         expect(all('.title').size).to eq(1)
-        expect(page).to have_content '積みゲー'
+        expect(page).to have_content '積み'
       end
     end
   end

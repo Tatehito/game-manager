@@ -1,20 +1,18 @@
-<div class="wrapper-contents">
-  <div class="ui divider"></div>
-  <div class="ui secondary scrolling menu">
-    <div class="item" style="padding:0;"><i class="filter icon"></i></div>
-    <div class="item">
-      <%= link_to 'すべて', games_path %>
-      <div class="ui label"><%= @user.games.size %></div>
-    </div>
-    <% Status.all.each do |status| %>
-      <div class="item">
-        <%= link_to status.name, games_path(status: status.id) %>
-        <div class="ui label"><%= @user.games.where(status: status.id).size %></div>
-      </div>
-    <% end %>
+<div class="ui divider"></div>
+<div class="ui secondary scrolling menu">
+  <div class="item" style="padding:0;"><i class="filter icon"></i></div>
+  <div class="item">
+    <%= link_to 'すべて', games_path %>
+    <div class="ui label"><%= @user.games.size %></div>
   </div>
-  <div class="ui divider"></div>
+  <% Status.all.each do |status| %>
+    <div class="item">
+      <%= link_to status.name, games_path(status: status.id) %>
+      <div class="ui label"><%= @user.games.where(status: status.id).size %></div>
+    </div>
+  <% end %>
 </div>
+<div class="ui divider"></div>
 
 <script>
   $('.ui.dropdown').dropdown();
