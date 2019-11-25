@@ -17,7 +17,6 @@ class AmazonController < ApplicationController
           url: item.get('DetailPageURL'),
           title: item.get('ItemAttributes/Title'),
           manufacturer: item.get('ItemAttributes/Manufacturer'),
-          price: item.get('ItemAttributes/ListPrice/FormattedPrice'),
           image: item.get('LargeImage/URL')
       )
       @games << game

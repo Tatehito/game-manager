@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_08_134827) do
+ActiveRecord::Schema.define(version: 2019_11_25_123829) do
 
   create_table "games", force: :cascade do |t|
     t.integer "user_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_11_08_134827) do
     t.string "url"
     t.string "title"
     t.string "manufacturer"
-    t.string "price"
+    t.integer "price"
     t.string "image"
   end
 
