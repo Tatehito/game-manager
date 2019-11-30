@@ -9,9 +9,13 @@
 <%= form_with(model: @game, class: "ui form") do |form| %>
   <div class="ui segment">
     <%= image_tag(@game.image, class: "ui centered small image") %>
-    <div class="ui centered header">
+    <div id="title_header" class="ui centered header">
       <%= @game.title %>
     </div>
+  </div>
+  <div class="field">
+    <label>タイトル</label>
+    <%= form.text_field :title %>
   </div>
   <div class="field">
     <label>プレイ状況</label>
@@ -44,4 +48,8 @@
   function set_evaluation() {
     $('#game_evaluation').val($("i.icon.active").length);
   }
+
+  $('#game_title').keyup(function() {
+      $('#title_header')[0].innerText = $('#game_title').val()
+  });
 </script>

@@ -1,5 +1,6 @@
 class AmazonController < ApplicationController
   require 'amazon/ecs'
+  require 'cgi'
 
   def search
     # Amazon::Ecs::debug = true
@@ -15,8 +16,8 @@ class AmazonController < ApplicationController
       game = Game.new(
           asin: item.get('ASIN'),
           url: item.get('DetailPageURL'),
-          title: item.get('ItemAttributes/Title'),
-          manufacturer: item.get('ItemAttributes/Manufacturer'),
+          title: CGI.unescapeHTML(item.get('ItemAttributes/Title')),
+          manufacturer: CGI.unescapeHTML(item.get('ItemAttributes/Manufacturer')),
           image: item.get('LargeImage/URL'),
           price: item.get('ItemAttributes/ListPrice/Amount')
       )
