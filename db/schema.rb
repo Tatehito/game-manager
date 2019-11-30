@@ -10,38 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_123829) do
+ActiveRecord::Schema.define(version: 2019_11_30_131849) do
 
-  create_table 'games', force: :cascade do |t|
-    t.integer 'user_id'
-    t.string 'asin'
-    t.integer 'status'
-    t.integer 'platform'
-    t.integer 'evaluation'
-    t.text 'memo'
-    t.integer 'play_time'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.string 'url'
-    t.string 'title'
-    t.string 'manufacturer'
-    t.integer 'price'
-    t.string 'image'
+  create_table "games", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "asin"
+    t.integer "status"
+    t.integer "platform"
+    t.integer "evaluation"
+    t.text "memo"
+    t.integer "play_time"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "url"
+    t.string "title"
+    t.string "manufacturer"
+    t.integer "price"
+    t.string "image"
   end
 
-  create_table 'statuses', force: :cascade do |t|
-    t.string 'name', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "statuses", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'provider'
-    t.string 'uid'
-    t.string 'user_name'
-    t.string 'image_url'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "users", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.string "user_name"
+    t.string "image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "screen_name"
   end
 
 end

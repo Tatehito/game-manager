@@ -12,14 +12,14 @@
     <div class="content">
       <span class="header"><%= @user.user_name %>さんの<%= @shelf_label %></span>
       <div class="meta">
-        <span>@xxxxxxx</span>
+        <span>@<%= @user.screen_name %></span>
       </div>
       <div class="description" style="margin-top: 20px">
         <div class="ui relaxed divided list">
           <div class="item">
             <i class="gamepad icon" style="padding-right:12px"></i>
             <div class="content">
-              <span><%= @games.size %>本</span>
+              <span><%= @games.size %> 本</span>
             </div>
           </div>
           <div class="item">
