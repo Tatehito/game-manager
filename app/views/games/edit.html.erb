@@ -26,7 +26,7 @@
   </div>
   <div class="field">
     <label>価格</label>
-    <%= form.number_field :price %>
+    <%= form.text_field :price, data: { autonumeric: { aSign: '¥ ', mDec: 0 } } %>
   </div>
   <div class="field">
     <label>評価</label>
@@ -52,4 +52,6 @@
   $('#game_title').keyup(function() {
       $('#title_header')[0].innerText = $('#game_title').val()
   });
+
+  $(document).trigger('refresh_autonumeric')
 </script>
