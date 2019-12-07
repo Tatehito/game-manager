@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_131234) do
+ActiveRecord::Schema.define(version: 2019_12_07_055409) do
 
-  create_table "games", force: :cascade do |t|
+  create_table "games", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "asin"
     t.integer "status"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_12_04_131234) do
     t.integer "play_time"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "url"
+    t.text "url"
     t.string "title"
     t.string "manufacturer"
     t.integer "price"
@@ -30,13 +30,13 @@ ActiveRecord::Schema.define(version: 2019_12_04_131234) do
     t.date "purchase_date"
   end
 
-  create_table "statuses", force: :cascade do |t|
+  create_table "statuses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "provider"
     t.string "uid"
     t.string "user_name"
