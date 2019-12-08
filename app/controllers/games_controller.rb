@@ -56,7 +56,7 @@ class GamesController < ApplicationController
     games = current_user.games
     games = games.where(status: params[:status]) unless params[:status].nil?
     games = games.where(purchase_date: Range.new("#{params[:year]}-01-01", "#{params[:year]}-12-31")) unless params[:year].nil?
-    return games
+    return games.order(created_at: :desc)
   end
 
   def set_shelf_label
