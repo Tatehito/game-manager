@@ -1,19 +1,66 @@
-<div class="ui divider"></div>
-<div class="ui secondary scrolling menu">
-  <div class="item" style="padding:0;"><i class="filter icon"></i></div>
-  <div class="item">
-    <%= link_to 'すべて', games_path %>
-    <div class="ui label"><%= @user.games.size %></div>
-  </div>
-  <% Status.all.each do |status| %>
-    <div class="item">
-      <%= link_to status.name, games_path(status: status.id) %>
-      <div class="ui label"><%= @user.games.where(status: status.id).size %></div>
+<div class="link">
+  <div class="ui divider"></div>
+  <div class="ui secondary scrolling menu">
+    <div class="header item"><i class="filter icon"></i>状況</div>
+    <div class="item cond-status all">
+      <%= link_to 'すべて', games_path(year: @params[:year]) %>
     </div>
-  <% end %>
-</div>
-<div class="ui divider"></div>
+    <% Status.all.each do |status| %>
+      <div class="item cond-status <%= status.id %>">
+        <%= link_to status.name, games_path(status: status.id, year: @params[:year]) %>
+      </div>
+    <% end %>
+  </div>
 
-<script>
-  $('.ui.dropdown').dropdown();
-</script>
+  <div class="ui divider"></div>
+  <div class="ui secondary scrolling menu">
+    <div class="header item"><i class="filter icon"></i>購入年</div>
+    <div class="item cond-year all">
+      <%= link_to 'すべて', games_path(status: @params[:status]) %>
+    </div>
+    <% @years.each do |year| %>
+      <div class="item cond-year <%= year %>">
+        <%= link_to year, games_path(status: @params[:status], year: year) %>
+      </div>
+    <% end %>
+  </div>
+  <div class="ui divider"></div>
+
+  <script>
+      $('.ui.dropdown').dropdown();
+
+      $(document).ready(function () {
+          let params = getParams();
+          emphasizeActiveStatus(params);
+          emphasizeActiveYears(params);
+      })
+
+      function emphasizeActiveStatus(params){
+          let targetStatus = params.status;
+          if(!targetStatus){
+              $('.cond-status.all').addClass('active');
+          }else {
+              $('.cond-status' + '.' + targetStatus).addClass('active');
+          }
+      }
+
+      function emphasizeActiveYears(params){
+          let targetYear = params.year;
+          if(!targetYear){
+              $('.cond-year.all').addClass('active');
+          }else{
+              $('.cond-year' + '.' + targetYear).addClass('active');
+          }
+      }
+
+      function getParams() {
+          let arg = new Object;
+          let pair = location.search.substring(1).split('&');
+          for(let i=0;pair[i];i++) {
+              let kv = pair[i].split('=');
+              arg[kv[0]]=kv[1];
+          }
+          return arg;
+      }
+  </script>
+</div>

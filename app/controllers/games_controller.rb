@@ -2,13 +2,10 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:status].nil?
-      @games = current_user.games
-      @shelf_label = 'ゲーム棚'
-    else
-      @games = current_user.games.where(status: params[:status])
-      @shelf_label = Status.find(params[:status]).name + 'ゲーム'
-    end
+    @years = current_user.games.pluck(:purchase_date).compact.map { | date | date.year }.sort.reverse
+    @params = { status: params[:status], year: params[:year] }
+    @games = set_games
+    @shelf_label = set_shelf_label
     @total_price = @games.map(&:price).compact.sum.to_s(:delimited, delimiter: ',')
     @user = current_user
   end
@@ -53,5 +50,30 @@ class GamesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def game_params
     params.require(:game).permit(:user_id, :asin, :url, :title, :manufacturer, :price, :image, :status, :platform, :evaluation, :memo, :play_time, :purchase_date)
+  end
+
+  def set_games
+    games = current_user.games
+    games = games.where(status: params[:status]) unless params[:status].nil?
+    games = games.where(purchase_date: Range.new("#{params[:year]}-01-01", "#{params[:year]}-12-31")) unless params[:year].nil?
+    return games
+  end
+
+  def set_shelf_label
+    if(params[:status].nil?)
+      if(params[:year].nil?)
+        label = 'のゲーム棚'
+      else
+        label = "が#{params[:year]}年に購入したゲーム"
+      end
+    else
+      status_name = Status.find(params[:status]).name
+      if(params[:year].nil?)
+        label = "の#{status_name}ゲーム"
+      else
+        label = "が#{params[:year]}年に購入した、#{status_name}ゲーム"
+      end
+    end
+    current_user.user_name + 'さん' + label
   end
 end

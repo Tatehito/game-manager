@@ -1,0 +1,21 @@
+.link {
+  margin: 20px 0;
+
+  .ui.divider {
+    margin: 7px 0 7px;
+  }
+
+  .ui.secondary.menu {
+    margin: 0;
+
+    .item {
+      margin: 0 2px;
+      padding: 10px 8px;
+    }
+
+    .header.item {
+      width: 91px;
+      border-right: 1px solid rgba(34, 36, 38, 0.15);
+    }
+  }
+}

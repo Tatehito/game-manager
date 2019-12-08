@@ -3,9 +3,11 @@
     <%= link_to 'ゲームメーター', root_path, class: "large header item" %>
     <div class="right menu">
       <% if logged_in? %>
-        <%= link_to 'Logout', '/signout', class: "ui item" %>
+        <%= link_to 'ログアウト', '/signout', class: "ui item" %>
       <% else %>
-        <%= link_to 'Log-in', '/auth/twitter', class: "ui item" %>
+        <div class="item">
+          <div class="ui twitter button"><i class="twitter icon"></i><%= link_to 'ログイン', '/auth/twitter', style: 'color:#fff' %></div>
+        </div>
       <% end %>
     </div>
   </div>
