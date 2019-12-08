@@ -2,7 +2,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
 
   def index
-    @years = current_user.games.pluck(:purchase_date).compact.map { | date | date.year }.sort.reverse
+    @years = current_user.games.pluck(:purchase_date).compact.map { | date | date.year }.uniq.sort.reverse
     @params = { status: params[:status], year: params[:year] }
     @games = set_games
     @shelf_label = set_shelf_label
