@@ -12,8 +12,11 @@
 
   <body>
     <%= render "layouts/header" %>
-    <div class="wrapper-contents">
-      <%= yield %>
+    <div class="inner-body">
+      <div class="outer-content">
+        <%= yield %>
+      </div>
     </div>
+    <%= render "layouts/footer" %>
   </body>
 </html>

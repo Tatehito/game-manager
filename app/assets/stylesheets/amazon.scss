@@ -7,4 +7,10 @@
       padding: 11px 50px;
     }
   }
+
+  @media screen and (min-width: 1024px) {
+    .extra {
+      text-align: left;
+    }
+  }
 }

@@ -1,77 +1,79 @@
-<% if notice %>
-  <div class="ui positive message">
-    <p><%= notice %></p>
-  </div>
-<% end %>
-
-<%= form_with(model: @game, class: "ui form") do |form| %>
-  <div class="ui segment">
-    <%= image_tag(@game.image, class: "ui centered small image") %>
-    <div id="title_header" class="ui centered header">
-      <%= @game.title %>
+<div class="game-edit">
+  <% if notice %>
+    <div class="ui positive message">
+      <p><%= notice %></p>
     </div>
-  </div>
-  <div class="field">
-    <label>タイトル</label>
-    <%= form.text_field :title %>
-  </div>
-  <div class="field">
-    <label>プレイ状況</label>
-    <%= form.select :status,
-      {ほしい: 1, 今やってる: 2, クリア済: 3, 積み: 4},
-      {},
-      {class: "ui search dropdown"} %>
-  </div>
-  <div id="purchase_date_div" class="field">
-    <label>購入日</label>
-    <%= form.date_field :purchase_date, value: @game[:purchase_date] %>
-  </div>
-  <div class="field">
-    <label>価格</label>
-    <%= form.text_field :price, data: { autonumeric: { aSign: '¥ ', mDec: 0 } } %>
-  </div>
-  <div class="field">
-    <label>評価</label>
-    <div class="ui star rating" data-rating="<%= @game.evaluation %>" data-max-rating="5"></div>
-    <%= form.hidden_field :evaluation %>
-  </div>
-  <div class="field">
-    <label>感想・メモ</label>
-    <%= form.text_area :memo %>
-  </div>
-  <%= form.submit '更新', class: "ui teal button", style: "display:block; width:80%; margin: 0 auto;", onClick: "updateSubmit()" %>
-<% end %>
+  <% end %>
 
-<%= link_to '削除', @game, class: "ui button", style: "display:block; width:80%; margin: 10px auto;", method: :delete, data: { confirm: 'このゲームを削除しますか？' } %>
+  <%= form_with(model: @game, class: "ui form") do |form| %>
+    <div class="ui segment">
+      <%= image_tag(@game.image, class: "ui centered small image") %>
+      <div id="title_header" class="ui centered header">
+        <%= @game.title %>
+      </div>
+    </div>
+    <div class="field">
+      <label>タイトル</label>
+      <%= form.text_field :title %>
+    </div>
+    <div class="field">
+      <label>プレイ状況</label>
+      <%= form.select :status,
+        {ほしい: 1, 今やってる: 2, クリア済: 3, 積み: 4},
+        {},
+        {class: "ui search dropdown"} %>
+    </div>
+    <div id="purchase_date_div" class="field">
+      <label>購入日</label>
+      <%= form.date_field :purchase_date, value: @game[:purchase_date] %>
+    </div>
+    <div class="field">
+      <label>価格</label>
+      <%= form.text_field :price, data: { autonumeric: { aSign: '¥ ', mDec: 0 } } %>
+    </div>
+    <div class="field">
+      <label>評価</label>
+      <div class="ui star rating" data-rating="<%= @game.evaluation %>" data-max-rating="5"></div>
+      <%= form.hidden_field :evaluation %>
+    </div>
+    <div class="field">
+      <label>感想・メモ</label>
+      <%= form.text_area :memo %>
+    </div>
+    <%= form.submit '更新', class: "ui teal update button", onClick: "updateSubmit()" %>
+  <% end %>
 
-<script>
-  $(document).ready(function () {
-      $('.ui.rating').rating();
-      disablePurchaseDate();
-  })
+  <%= link_to '削除', @game, class: "ui delete button",  method: :delete, data: { confirm: 'このゲームを削除しますか？' } %>
 
-  $(document).trigger('refresh_autonumeric')
+  <script>
+    $(document).ready(function () {
+        $('.ui.rating').rating();
+        disablePurchaseDate();
+    })
 
-  $('#game_status').change(function () {
-      disablePurchaseDate()
-  });
+    $(document).trigger('refresh_autonumeric')
 
-  $('#game_title').keyup(function() {
-      $('#title_header')[0].innerText = $('#game_title').val()
-  });
+    $('#game_status').change(function () {
+        disablePurchaseDate()
+    });
 
-  function updateSubmit() {
-      if($('#game_status').val() == '1') {
-          $('#game_purchase_date').val('');
-      }
-      $('#game_evaluation').val($("i.icon.active").length);
-  }
+    $('#game_title').keyup(function() {
+        $('#title_header')[0].innerText = $('#game_title').val()
+    });
 
-  function disablePurchaseDate(){
-      if($('#game_status').val() == '1'){
-          $('#purchase_date_div').addClass('disabled');
-      }else{
-          $('#purchase_date_div').removeClass('disabled');
-      }
-  }
-</script>
+    function updateSubmit() {
+        if($('#game_status').val() == '1') {
+            $('#game_purchase_date').val('');
+        }
+        $('#game_evaluation').val($("i.icon.active").length);
+    }
+
+    function disablePurchaseDate(){
+        if($('#game_status').val() == '1'){
+            $('#purchase_date_div').addClass('disabled');
+        }else{
+            $('#purchase_date_div').removeClass('disabled');
+        }
+    }
+  </script>
+</div>

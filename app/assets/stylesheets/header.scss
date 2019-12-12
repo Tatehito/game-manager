@@ -1,11 +1,37 @@
-header {
-  margin-bottom: 15px;
+@import "variables";
 
+header {
   .ui.attached.menu {
     padding: 5px 0;
   }
 
   .ui.twitter.button {
     padding: 10px 15px;
+  }
+
+  .wrapper-menu {
+    border-bottom: $border;
+  }
+
+  .wrapper-search-form {
+    padding: 10px;
+    border-bottom: $border;
+
+    .input {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .wrapper-menu {
+      .ui.secondary.menu {
+        width: $width_computer;
+        margin: 0 auto;
+      }
+
+      .input {
+        width: 300px;
+      }
+    }
   }
 }

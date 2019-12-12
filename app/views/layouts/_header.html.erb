@@ -1,27 +1,26 @@
 <header>
-  <div class="ui attached secondary menu">
-    <%= link_to 'ゲームメーター', root_path, class: "large header item" %>
-    <div class="right menu">
-      <% if logged_in? %>
-        <%= link_to 'ログアウト', '/signout', class: "ui item" %>
-      <% else %>
-        <div class="item">
-          <div class="ui twitter button"><i class="twitter icon"></i><%= link_to 'ログイン', '/auth/twitter', style: 'color:#fff' %></div>
+  <div class="wrapper-menu">
+    <div class="ui secondary menu">
+      <%= link_to 'ゲームソフト管理サービス（仮）', root_path, class: "large header item" %>
+      <div class="right menu">
+        <div class="item computer only">
+          <%= render 'layouts/search_form' %>
         </div>
-      <% end %>
+        <% if logged_in? %>
+          <div class="item">
+            <%= link_to 'ログアウト', '/signout' %>
+          </div>
+        <% else %>
+          <div class="item">
+            <div class="ui twitter button"><i class="twitter icon"></i><%= link_to 'ログイン', '/auth/twitter', style: 'color:#fff' %></div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-
   <% if logged_in? %>
-    <div class="ui attached mobile only segment">
-      <%= form_tag("/search", method: "get") do %>
-        <div class="ui fluid mini action input">
-          <input type="text" id="search_word" name="search_word" placeholder="Amazonでゲームソフトを検索">
-          <button class="ui icon button">
-            <i class="search icon"></i>
-          </button>
-        </div>
-      <% end %>
+    <div class="wrapper-search-form mobile only">
+      <%= render 'layouts/search_form' %>
     </div>
   <% end %>
 </header>

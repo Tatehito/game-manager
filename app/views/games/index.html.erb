@@ -42,9 +42,9 @@
   <% if @games.size == 0 %>
     <div>ゲームソフトが登録されていません。</div>
   <% else %>
-    <div class="ui three column grid">
+    <div class="ui grid">
       <% @games.each do |game| %>
-        <div class="column">
+        <div class="column ">
           <div class="ui segment" style="padding:0">
             <%= link_to image_tag(game.image, style: "width:100%"), edit_game_path(game) %>
           </div>

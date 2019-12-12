@@ -1,3 +1,37 @@
 .game-list {
   margin: 20px 0;
+
+  .column {
+    width: 33.3%!important;
+
+    @media screen and (min-width: 1024px) {
+      width: 16.5%!important;
+    }
+  }
+}
+
+.game-edit {
+  padding-bottom: 10px;
+
+  .update.button {
+    display: block;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .delete.button {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .update.button {
+      width: 200px;
+    }
+
+    .delete.button {
+      width: 200px;
+    }
+  }
 }

@@ -14,17 +14,32 @@
  *= require_self
  */
 
- @import "semantic-ui";
+@import "semantic-ui";
+@import "variables";
 
- *, *:before, *:after {
+*, *:before, *:after {
   -webkit-box-sizing: border-box;
   box-sizing: border-box
 }
 
-.wrapper-contents {
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.inner-body {
+  min-height: 100%;
+}
+
+.outer-content {
   width: 90%;
   margin: 0 auto;
-  padding-bottom: 30px;
+  padding-top: 15px;
+  padding-bottom: $height_footer;
 }
 
 .scrolling {
@@ -34,4 +49,20 @@
 
 .scrolling::-webkit-scrollbar{
   display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .mobile.only {
+    display: none!important;
+  }
+
+  .outer-content {
+    width: $width_computer;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .computer.only {
+    display: none!important;
+  }
 }
