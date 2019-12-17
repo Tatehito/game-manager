@@ -1,1 +1,24 @@
-<p>ログインしてください</p>
+<div style="background-color: #730E15; height: 400px"></div>
+
+<div class="ui header">最近人気のゲーム</div>
+
+<div class="ui unstackable divided items">
+  <% @popular_games.each do |g| %>
+    <div class="item">
+      <div class="ui tiny image">
+        <%= link_to (image_tag(g[:image], style: "height:150px")), g[:url] %>
+      </div>
+      <div class="content">
+        <%= link_to g[:title], g[:url], class: "ui small header" %>
+        <div class="meta">
+          <span class="manufacturer"><%= g[:manufacturer] %></span>
+        </div>
+        <div class="extra">
+          <div><i class="user icon"></i><%= g[:count] %></div>
+          <div><i class="star icon"></i><%= g[:average] %></div>
+          <div><i class="pencil alternate icon"></i></div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
