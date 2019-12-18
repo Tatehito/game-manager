@@ -1,19 +1,12 @@
-class AmazonController < ApplicationController
-  require 'amazon/ecs'
+class SearchController < ApplicationController
   require 'cgi'
+  include AmazonApi
 
-  def search
-    # Amazon::Ecs::debug = true
-    res = Amazon::Ecs.item_search(
-      params[:search_word],
-      country: 'jp',
-      response_group: 'ItemAttributes, Images',
-      search_index: 'VideoGames'
-    )
-  
-    @games = []
-    res.items.map do |item|
-      game = Game.new(
+  def index
+    res = amazon_search(params[:search_word])
+
+    @games = res.items.map do |item|
+      Game.new(
           asin: item.get('ASIN'),
           url: item.get('DetailPageURL'),
           title: CGI.unescapeHTML(item.get('ItemAttributes/Title')),
@@ -21,7 +14,6 @@ class AmazonController < ApplicationController
           image: item.get('LargeImage/URL'),
           price: item.get('ItemAttributes/ListPrice/Amount')
       )
-      @games << game
     end
   end
 end
