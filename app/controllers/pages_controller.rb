@@ -3,7 +3,14 @@ class PagesController < ApplicationController
 
   def index
     redirect_to games_path if logged_in?
-    @games = params[:search_word].nil? ? popular_games : search_results
+    @games = popular_games
+    @header = '最近人気のゲーム'
+    end
+
+  def search
+    @games = search_results
+    @header = '検索結果'
+    render 'index'
   end
 
   private

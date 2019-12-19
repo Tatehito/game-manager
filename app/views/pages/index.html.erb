@@ -5,16 +5,16 @@
   </div>
   <div class="ui unstackable divided items">
     <div class="search-form">
-      <%= form_tag("/", method: "get") do %>
+      <%= form_tag("/pre_search", method: "get") do %>
         <div class="ui icon mini action input">
-          <input type="text" id="search_word" name="search_word" placeholder="ゲームを検索する">
+          <input type="text" id="search_word" name="search_word" placeholder="ログインせずにゲームを検索する">
           <button class="ui icon basic button">
             <i class="search link icon"></i>
           </button>
         </div>
       <% end %>
     </div>
-    <div class="ui header">最近人気のゲーム</div>
+    <div class="ui header"><%= @header %></div>
     <% @games.each do |g| %>
       <div class="item">
         <div class="ui tiny image">
