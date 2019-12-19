@@ -3,11 +3,11 @@
   <div class="ui secondary scrolling menu">
     <div class="header item"><i class="filter icon"></i>状況</div>
     <div class="item cond-status all">
-      <%= link_to 'すべて', games_path(year: @params[:year]) %>
+      <%= link_to 'すべて', games_path(year: params[:year]) %>
     </div>
     <% Status.all.each do |status| %>
       <div class="item cond-status <%= status.id %>">
-        <%= link_to status.name, games_path(status: status.id, year: @params[:year]) %>
+        <%= link_to status.name, games_path(status: status.id, year: params[:year]) %>
       </div>
     <% end %>
   </div>
@@ -16,11 +16,11 @@
   <div class="ui secondary scrolling menu">
     <div class="header item"><i class="filter icon"></i>購入年</div>
     <div class="item cond-year all">
-      <%= link_to 'すべて', games_path(status: @params[:status]) %>
+      <%= link_to 'すべて', games_path(status: params[:status]) %>
     </div>
     <% @years.each do |year| %>
       <div class="item cond-year <%= year %>">
-        <%= link_to year, games_path(status: @params[:status], year: year) %>
+        <%= link_to year, games_path(status: params[:status], year: year) %>
       </div>
     <% end %>
   </div>

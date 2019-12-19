@@ -1,0 +1,31 @@
+.top {
+  .eye-catch {
+    position: relative;
+
+    .ui.twitter.button {
+      margin: 0 auto;
+      width: 200px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 20px;
+    }
+  }
+
+  .ui.icon.mini.action.input {
+    width: 70%;
+  }
+
+  .search-form {
+    padding-bottom: 20px;
+    text-align: center;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .ui.unstackable.divided.items {
+      width: 70%;
+      margin: 0 auto;
+      padding: 20px 0 20px;
+    }
+  }
+}

@@ -3,16 +3,12 @@
     <div class="ui secondary menu">
       <%= link_to 'ゲームソフト管理サービス（仮）', root_path, class: "large header item" %>
       <div class="right menu">
-        <div class="item computer only">
-          <%= render 'layouts/search_form' %>
-        </div>
         <% if logged_in? %>
+          <div class="item computer only">
+            <%= render 'layouts/search_form' %>
+          </div>
           <div class="item">
             <%= link_to 'ログアウト', '/signout' %>
-          </div>
-        <% else %>
-          <div class="item">
-            <div class="ui twitter button"><i class="twitter icon"></i><%= link_to 'ログイン', '/auth/twitter', style: 'color:#fff' %></div>
           </div>
         <% end %>
       </div>
