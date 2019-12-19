@@ -1,0 +1,17 @@
+<% games.each do |g| %>
+  <div class="item">
+    <div class="ui tiny image">
+      <%= link_to (image_tag(g[:image])), g[:url] %>
+    </div>
+    <div class="content">
+      <%= link_to g[:title], g[:url], class: "ui small header" %>
+      <div class="meta">
+        <span class="manufacturer"><%= g[:manufacturer] %></span>
+      </div>
+      <div class="extra">
+        <div><i class="user icon"></i><%= g[:count] %></div>
+        <div><i class="star icon"></i><%= g[:average] %></div>
+      </div>
+    </div>
+  </div>
+<% end %>

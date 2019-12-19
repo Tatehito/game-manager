@@ -1,16 +1,6 @@
 .search-result {
-  .extra {
-    text-align: center;
-    padding: 10px!important;
-
-    .button {
-      padding: 11px 50px;
-    }
-  }
-
   @media screen and (min-width: 1024px) {
-    .extra {
-      text-align: left;
-    }
+    width: 70%;
+    margin: 10px auto 0;
   }
 }

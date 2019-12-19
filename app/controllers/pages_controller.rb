@@ -8,7 +8,7 @@ class PagesController < ApplicationController
     end
 
   def search
-    @games = search_results
+    @games = amazon_search(params[:search_word])
     @header = '検索結果'
     render 'index'
   end
@@ -30,32 +30,5 @@ class PagesController < ApplicationController
           Game.where(asin: a).count,
           average.nil? ? '-' : average)
     end
-  end
-
-  def search_results
-    res = amazon_search(params[:search_word])
-    res.items.map do |item|
-      average = evaluation_average(item.get('ASIN'))
-      game_info(
-          CGI.unescapeHTML(item.get('ItemAttributes/Title')),
-          item.get('LargeImage/URL'),
-          CGI.unescapeHTML(item.get('ItemAttributes/Manufacturer')),
-          Game.where(asin: item.get('ASIN')).count,
-          average.nil? ? '-' : average)
-    end
-  end
-
-  def game_info(title, image, manufacturer, count, average)
-    {
-        title: title,
-        image: image,
-        manufacturer: manufacturer,
-        count: count,
-        average: average
-    }
-  end
-
-  def evaluation_average(asin)
-    Game.where(asin: asin).average(:evaluation)
   end
 end
