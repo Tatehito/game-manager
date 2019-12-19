@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<%= render 'games/link' %>
+<%= render 'games/link', local: {params: @params} %>
 
 <div class="game-list">
   <% if @games.size == 0 %>

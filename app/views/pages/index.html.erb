@@ -1,9 +1,20 @@
-<div style="background-color: #730E15; height: 400px"></div>
+<div style="background-color: #730E15; height: 400px">
+  <div class="ui twitter button"><i class="twitter icon"></i><%= link_to 'Twitterでログイン', '/auth/twitter', style: 'color:#fff' %></div>
+</div>
+
+<%= form_tag("/", method: "get") do %>
+  <div class="ui icon mini action input">
+    <input type="text" id="search_word" name="search_word" placeholder="ゲームを検索">
+    <button class="ui icon basic button">
+      <i class="search link icon"></i>
+    </button>
+  </div>
+<% end %>
 
 <div class="ui header">最近人気のゲーム</div>
 
 <div class="ui unstackable divided items">
-  <% @popular_games.each do |g| %>
+  <% @games.each do |g| %>
     <div class="item">
       <div class="ui tiny image">
         <%= link_to (image_tag(g[:image], style: "height:150px")), g[:url] %>
