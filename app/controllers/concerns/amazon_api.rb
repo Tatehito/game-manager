@@ -11,26 +11,22 @@ module AmazonApi
 
     res.items.map do |item|
       average = evaluation_average(item.get('ASIN'))
-      game_info(
-          CGI.unescapeHTML(item.get('ItemAttributes/Title')),
-          item.get('LargeImage/URL'),
-          CGI.unescapeHTML(item.get('ItemAttributes/Manufacturer')),
-          Game.where(asin: item.get('ASIN')).count,
-          average.nil? ? '-' : average)
+      {
+          data: Game.new(
+              asin: item.get('ASIN'),
+              url: item.get('DetailPageURL'),
+              title: CGI.unescapeHTML(item.get('ItemAttributes/Title')),
+              manufacturer: CGI.unescapeHTML(item.get('ItemAttributes/Manufacturer')),
+              image: item.get('LargeImage/URL'),
+              price: item.get('ItemAttributes/ListPrice/Amount')
+          ),
+          count: Game.where(asin: item.get('ASIN')).count,
+          average: average.nil? ? '-' : average
+      }
     end
   end
 
   private
-
-  def game_info(title, image, manufacturer, count, average)
-    {
-        title: title,
-        image: image,
-        manufacturer: manufacturer,
-        count: count,
-        average: average
-    }
-  end
 
   def evaluation_average(asin)
     Game.where(asin: asin).average(:evaluation)
