@@ -4,13 +4,6 @@ class PagesController < ApplicationController
   def index
     redirect_to games_path if logged_in?
     @games = popular_games
-    @header = '最近人気のゲーム'
-    end
-
-  def search
-    @games = amazon_search(params[:search_word])
-    @header = '検索結果'
-    render 'index'
   end
 
   private
@@ -23,12 +16,17 @@ class PagesController < ApplicationController
     asin.keys.map do |a|
       game = Game.find_by(asin: a)
       average = evaluation_average(a)
-      game_info(
-          game.title,
-          game.image,
-          game.manufacturer,
-          Game.where(asin: a).count,
-          average.nil? ? '-' : average)
+      {
+          data: Game.new(
+              asin: game.asin,
+              url: game.url,
+              title: game.title,
+              manufacturer: game.manufacturer,
+              image: game.image
+          ),
+          count: Game.where(asin: a).count,
+          average: average.nil? ? '-' : average
+      }
     end
   end
 end
