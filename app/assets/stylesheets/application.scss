@@ -33,6 +33,7 @@ a {
 
 .inner-body {
   min-height: 100%;
+  padding-top: 96px;
 }
 
 .outer-content {
@@ -58,6 +59,10 @@ a {
 
   .outer-content {
     width: $width_computer;
+  }
+
+  .inner-body {
+    padding-top: 57px;
   }
 }
 
