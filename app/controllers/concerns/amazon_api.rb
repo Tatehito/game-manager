@@ -15,9 +15,9 @@ module AmazonApi
           data: Game.new(
               asin: item.get('ASIN'),
               url: item.get('DetailPageURL'),
-              title: CGI.unescapeHTML(item.get('ItemAttributes/Title')),
-              manufacturer: CGI.unescapeHTML(item.get('ItemAttributes/Manufacturer')),
-              image: item.get('LargeImage/URL'),
+              title: title(item.get('ItemAttributes/Title')),
+              manufacturer: manufacturer(item.get('ItemAttributes/Manufacturer')),
+              image: image(item.get('LargeImage/URL')),
               price: item.get('ItemAttributes/ListPrice/Amount')
           ),
           count: Game.where(asin: item.get('ASIN')).count,
@@ -30,5 +30,17 @@ module AmazonApi
 
   def evaluation_average(asin)
     Game.where(asin: asin).average(:evaluation)
+  end
+
+  def title(data)
+    data.nil? ? 'タイトルなし' : CGI.unescapeHTML(data)
+  end
+
+  def manufacturer(data)
+    data.nil? ? 'メーカー情報なし' : CGI.unescapeHTML(data)
+  end
+
+  def image(data)
+    data.nil? ? '' : CGI.unescapeHTML(data)
   end
 end

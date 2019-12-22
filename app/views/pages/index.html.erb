@@ -1,7 +1,8 @@
 <div class="top">
   <div class="eye-catch" style="background-color: #730E15; height: 400px">
-    <div class="ui twitter button">
-      <i class="twitter icon"></i><%= link_to 'Twitterでログイン', '/auth/twitter', style: 'color:#fff' %></div>
+    <%= button_to '/auth/twitter', class: 'ui twitter button', method: :get do %>
+      <i class="twitter icon"></i> Twitterでログイン
+    <% end %>
   </div>
   <div class="ui unstackable divided items">
     <div class="ui header">最近登録された人気ゲーム</div>
