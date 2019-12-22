@@ -25,6 +25,7 @@
 html, body {
   height: 100%;
   margin: 0;
+  overflow-x: hidden;
 }
 
 a {
@@ -33,6 +34,7 @@ a {
 
 .inner-body {
   min-height: 100%;
+  padding-top: 96px;
 }
 
 .outer-content {
@@ -58,6 +60,10 @@ a {
 
   .outer-content {
     width: $width_computer;
+  }
+
+  .inner-body {
+    padding-top: 57px;
   }
 }
 
