@@ -1,39 +1,43 @@
 <div class="search-result">
   <div class="ui header">検索結果</div>
-  <div class="ui unstackable divided items">
-    <% @games.each do |g| %>
-      <div class="item">
-        <div class="ui tiny image">
-          <%= link_to (image_tag(g[:data].image)), g[:data].url %>
-        </div>
-        <div class="content">
-          <%= link_to g[:data].title, g[:data].url, class: "ui small header" %>
-          <div class="meta">
-            <span class="manufacturer"><%= g[:data].manufacturer %></span>
+  <% if @games.empty? %>
+    <div>検索結果はありません</div>
+  <% else %>
+    <div class="ui unstackable divided items">
+      <% @games.each do |g| %>
+        <div class="item">
+          <div class="ui tiny image">
+            <%= link_to (image_tag(g[:data].image)), g[:data].url %>
           </div>
-          <div class="extra">
-            <div class="data">
-              <div><i class="user icon"></i><%= g[:count] %></div>
-              <div><i class="star icon"></i><%= g[:average] %></div>
+          <div class="content">
+            <%= link_to g[:data].title, g[:data].url, class: "ui small header" %>
+            <div class="meta">
+              <span class="manufacturer"><%= g[:data].manufacturer %></span>
             </div>
-            <div class="button">
+            <div class="extra">
+              <div class="data">
+                <div><i class="user icon"></i><%= g[:count] %></div>
+                <div><i class="star icon"></i><%= g[:average] %></div>
+              </div>
+              <div class="button">
 
-              <%= form_with model: g[:data] do |form| %>
-                <%= form.hidden_field(:image, value: g[:data].image) %>
-                <%= form.hidden_field(:title, value: g[:data].title) %>
-                <%= form.hidden_field(:manufacturer, value: g[:data].manufacturer) %>
-                <%= form.hidden_field(:price, value: g[:data].price) %>
-                <%= form.hidden_field(:asin, value: g[:data].asin) %>
-                <%= form.hidden_field(:url, value: g[:data].url) %>
-                <%= form.hidden_field(:status, value: '1') %>
-                <%= button_to '/auth/twitter', class: 'ui basic button' do %>
-                  <i class="ui plus circle icon"></i>登録する
+                <%= form_with model: g[:data] do |form| %>
+                  <%= form.hidden_field(:image, value: g[:data].image) %>
+                  <%= form.hidden_field(:title, value: g[:data].title) %>
+                  <%= form.hidden_field(:manufacturer, value: g[:data].manufacturer) %>
+                  <%= form.hidden_field(:price, value: g[:data].price) %>
+                  <%= form.hidden_field(:asin, value: g[:data].asin) %>
+                  <%= form.hidden_field(:url, value: g[:data].url) %>
+                  <%= form.hidden_field(:status, value: '1') %>
+                  <%= button_to '/auth/twitter', class: 'ui basic button' do %>
+                    <i class="ui plus circle icon"></i>登録する
+                  <% end %>
                 <% end %>
-              <% end %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
