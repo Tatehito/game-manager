@@ -1,27 +1,59 @@
 <div class="top">
-  <div class="eye-catch" style="background-color: #730E15; height: 400px">
-    <%= button_to '/auth/twitter', class: 'ui twitter button', method: :get do %>
-      <i class="twitter icon"></i> Twitterでログイン
-    <% end %>
-  </div>
-  <div class="ui unstackable divided items">
-    <div class="ui header">最近登録された人気ゲーム</div>
-    <% @games.each do |g| %>
-      <div class="item">
-        <div class="ui tiny image">
-          <%= link_to (image_tag(g[:data].image)), g[:data].url %>
+  <section id="header" class="ui centered stackable grid">
+    <div class="ui row">
+      <div class="center aligned column">
+        <div id="header-logo">
+          <h1>
+            <%= image_tag "sample.jpg", alt: "ゲームソフト管理サービス", class: "ui large centered image" %>
+          </h1>
         </div>
-        <div class="content">
-          <%= link_to g[:data].title, g[:data].url, class: "ui small header" %>
-          <div class="meta">
-            <span class="manufacturer"><%= g[:data].manufacturer %></span>
+        <div id="header-catch">
+          <br class="computer only">
+          <div class="ui large header">
+            遊んだゲームを記録しよう
+            <div class="sub header">
+              「ゲームソフト管理サービス」は遊んだゲームや気になるゲームを記録できるシンプルな管理ツールです。
+            </div>
+            <div class="sub header">
+              ※ 当ツールは学習目的で開発したアプリケーションです。正式サービスとして公開しているものではありません（お使いいただくことは可能です）
+            </div>
           </div>
-          <div class="extra">
-            <div><i class="user icon"></i><%= g[:count] %></div>
-            <div><i class="star icon"></i><%= g[:average] %></div>
-          </div>
+          <%= button_to '/auth/twitter', class: 'ui twitter large fluid button', method: :get do %>
+            <i class="twitter icon"></i> Twitterでログイン（無料）
+          <% end %>
         </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  </section>
+
+  <section id="popular-games" class="ui centered stackable grid">
+    <div class="ui mini divider"></div>
+    <div class="ui row">
+      <div class="twelve wide center aligned column">
+        <h2 class="ui large header">
+          最近登録された人気ゲーム
+        </h2>
+        <br>
+        <div class="ui unstackable divided items">
+          <% @games.each do |g| %>
+            <div class="item">
+              <div class="ui tiny image">
+                <%= link_to (image_tag(g[:data].image)), g[:data].url %>
+              </div>
+              <div class="content">
+                <%= link_to g[:data].title, g[:data].url, class: "ui small header" %>
+                <div class="meta">
+                  <span class="manufacturer"><%= g[:data].manufacturer %></span>
+                </div>
+                <div class="extra">
+                  <div><i class="user icon"></i><%= g[:count] %></div>
+                  <div><i class="star icon"></i><%= g[:average] %></div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
