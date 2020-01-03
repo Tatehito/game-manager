@@ -4,60 +4,23 @@
       <div class="center aligned column">
         <div id="header-logo">
           <h1>
-            <img src="./images/logo.png" alt="ゲームソフト管理サービス" class="ui medium centered image" style="background-color: #2E2F30; height: 200px">
+            <%= image_tag "sample.jpg", alt: "ゲームソフト管理サービス", class: "ui large centered image" %>
           </h1>
         </div>
         <div id="header-catch">
           <br class="computer only">
           <div class="ui large header">
-            見出し
+            遊んだゲームを記録しよう
             <div class="sub header">
-              説明文
+              「ゲームソフト管理サービス」は遊んだゲームや気になるゲームを記録できるシンプルな管理ツールです。
+            </div>
+            <div class="sub header">
+              ※ 当ツールは学習目的で開発したアプリケーションです。正式サービスとして公開しているものではありません（お使いいただくことは可能です）
             </div>
           </div>
           <%= button_to '/auth/twitter', class: 'ui twitter large fluid button', method: :get do %>
             <i class="twitter icon"></i> Twitterでログイン（無料）
           <% end %>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="usage" class="ui centered stackable grid">
-    <div class="ui mini divider"></div>
-    <div class="ui row">
-      <div class="center aligned column">
-        <h2 class="ui large header">
-          見出し
-          <p class="sub header">
-            説明文
-          </p>
-        </h2>
-        <br>
-        <div class="ui stackable centered two cards">
-          <div class="ui card">
-            <div class="image">
-              <img src="./images/mailbox.png">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="ui row">
-      <div class="center aligned column">
-        <h2 class="ui large header">
-          見出し
-          <p class="sub header">
-            説明文
-          </p>
-        </h2>
-        <br>
-        <div class="ui stackable centered two cards">
-          <div class="ui card">
-            <div class="image">
-              <img src="./images/mailbox.png">
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -90,17 +53,6 @@
             </div>
           <% end %>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="under-login-button" class="ui centered stackable grid">
-    <div class="ui mini divider"></div>
-    <div class="ui row">
-      <div class="center aligned column">
-        <%= button_to '/auth/twitter', class: 'ui twitter large fluid button', method: :get do %>
-          <i class="twitter icon"></i> Twitterでログイン（無料）
-        <% end %>
       </div>
     </div>
   </section>
