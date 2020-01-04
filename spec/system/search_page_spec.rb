@@ -5,18 +5,19 @@ RSpec.describe "search page spec", type: :system do
     OmniAuth.config.mock_auth[:twitter] = nil
     Rails.application.env_config['omniauth.auth'] = set_omniauth
     visit root_path
-    click_link 'ログイン'
+    find(".ui.twitter.large.fluid.button").click #ログイン
   end
 
-  it 'is able to register unregistered games' do
-    fill_in 'search_word', with: 'ドラゴンクエスト'
-    click_on '検索'
-    click_on '登録', match: :first
-    expect(current_path).to eq games_path
-    expect(page).to have_content 'Game was successfully registered.'
-    expect(all('.title').size).to eq(1)
-  end
+  it 'is able to register game' do
+    (all("#search_word")[1]).set("ドラゴンクエスト")
+    (all(".wrapper-search-form")[0]).find("button").click #検索実行
+    expect(page).to have_content '検索結果'
+    expect(page).to_not have_content '検索結果はありません'
 
-  # it 'is not able to register registered games' do
-  # end
+    (all("button")[3]).click #検索結果の一番上を登録
+    expect(page).to have_content 'を登録しました。'
+
+    visit root_path #一覧ページを表示
+    expect(find(".game-list").all(".column").size).to eq(1)
+  end
 end

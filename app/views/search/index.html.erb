@@ -29,7 +29,7 @@
                   <%= form.hidden_field(:asin, value: g[:data].asin) %>
                   <%= form.hidden_field(:url, value: g[:data].url) %>
                   <%= form.hidden_field(:status, value: '1') %>
-                  <%= button_to '/auth/twitter', class: 'ui basic button' do %>
+                  <%= button_tag type: "submit", class: 'ui basic button' do %>
                     <i class="ui plus circle icon"></i>登録する
                   <% end %>
                 <% end %>
