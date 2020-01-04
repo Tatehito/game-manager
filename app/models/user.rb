@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   validates :provider, :uid, :user_name, presence: true
-  validates :provider, uniqueness: { scope: :uid }
+  validates :provider, uniqueness: { scope: :uid, case_sensitive: true }
   has_many :games, :dependent => :destroy
 
   def self.find_or_create_from_auth(auth)
