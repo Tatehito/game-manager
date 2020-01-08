@@ -5,7 +5,7 @@ RSpec.describe "game page spec", type: :system do
     OmniAuth.config.mock_auth[:twitter] = nil
     Rails.application.env_config['omniauth.auth'] = set_omniauth
     visit root_path
-    click_link 'ログイン'
+    find(".ui.twitter.large.fluid.button").click #ログイン
   end
 
   describe 'edit resistered game' do
@@ -15,27 +15,26 @@ RSpec.describe "game page spec", type: :system do
         asin: 'A000000001', status: '1', title: 'ほしいゲーム', image: 'https://dummy/images.jpg')
     end
 
-    # it '全項目が正しく更新されること' do
-      # 集計値が変わっていること
-    # end
-
     it 'updates status to 今やってる form ほしい' do
       click_on 'ほしい'
-      click_on 'ほしいゲーム', match: :first
-      expect(page).to have_content('ほしいゲーム')
-      expect(page).to have_select('Status', selected: 'ほしい')
-
-      select '今やってる', from: 'Status'
-      click_on '更新'
-      expect(page).to have_content('Game was successfully updated.')
-      expect(page).to have_select('Status', selected: '今やってる')
+      expect(find(".game-list").all(".column").size).to eq(1)
       
-      click_on 'ゲームメーター'
+      find(".game-list").all(".column")[0].find("a").click
+      expect(page).to have_content('ほしいゲーム')
+      expect(page).to have_select('game_status', selected: 'ほしい')
+
+      select '今やってる', from: 'game_status'
+      click_on '更新'
+      expect(page).to have_content('更新しました。')
+      expect(page).to have_select('game_status', selected: '今やってる')
+      
+      visit root_path
       click_on 'ほしい'
-      expect(all('.title').size).to eq(0)
-      click_on 'ゲームメーター'
+      expect(find(".game-list").all(".column").size).to eq(0)
+
+      visit root_path
       click_on '今やってる'
-      expect(all('.title').size).to eq(1)
+      expect(find(".game-list").all(".column").size).to eq(1)
     end
   end
 end

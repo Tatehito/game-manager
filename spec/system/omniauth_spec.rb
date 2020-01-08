@@ -8,20 +8,20 @@ RSpec.describe "omniauth spec", type: :system do
   end
 
   it "is able login/logout correctly" do
-    click_link 'ログイン'
-    expect(current_path).to eq profile_path
+    find(".ui.twitter.large.fluid.button").click #ログイン
+    expect(current_path).to eq games_path
     expect(page).to have_link 'ログアウト'
 
     click_on 'ログアウト'
     expect(current_path).to eq root_path
-    expect(page).to have_link 'ログイン'
+    find(".ui.twitter.large.fluid.button").click #ログイン
   end
 
   it "redirect to profile page when logged-in user logs in" do
-    click_link 'ログイン'
-    expect(current_path).to eq profile_path
+    find(".ui.twitter.large.fluid.button").click #ログイン
+    expect(current_path).to eq games_path
 
     visit root_path
-    expect(current_path).to eq profile_path
+    expect(current_path).to eq games_path
   end
 end
